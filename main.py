@@ -14,7 +14,7 @@ app = FastAPI(title="InternLoom Core API")
 
 # --- GLOBAL EXCEPTION HANDLER ---
 @app.exception_handler(HTTPException)
-async def custom_http_exception_handler(request, exc):
+async def my_exception_handler(request, exc):
     return {"status": "error", "message": exc.detail, "data": None}
 
 # Register Auth Router

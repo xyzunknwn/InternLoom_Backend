@@ -1,0 +1,220 @@
+{
+  "info": {
+    "name": "InternLoom API (Hackathon 2026)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "Register Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"shivam@bmsce.ac.in\",\n  \"password\": \"hackathon123\",\n  \"role\": \"student\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Register Company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "register"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"hr@techcorp.com\",\n  \"password\": \"securepass\",\n  \"role\": \"company\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login (Get Token)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "username",
+                  "value": "shivam@bmsce.ac.in",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "hackathon123",
+                  "type": "text"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Student Workflows",
+      "item": [
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/students/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "students",
+                "profile"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Shivam\",\n  \"college\": \"BMSCE\",\n  \"branch\": \"CSE\",\n  \"graduation_year\": 2026,\n  \"cgpa\": 9.2,\n  \"skills\": [\"Python\", \"FastAPI\", \"React\"]\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Matched Feed",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/student/feed",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "student",
+                "feed"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Company Workflows",
+      "item": [
+        {
+          "name": "Post New Job",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{company_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/jobs/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "jobs",
+                ""
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Backend Intern\",\n  \"description\": \"FastAPI Developer needed.\",\n  \"required_skills\": [\"Python\", \"FastAPI\"],\n  \"preferred_skills\": [\"Docker\"],\n  \"stipend\": \"30000 INR\",\n  \"location\": \"Remote\",\n  \"target_batch\": 2026,\n  \"deadline\": \"2026-12-31T23:59:59\",\n  \"max_applicants\": 50\n}"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    },
+    {
+      "key": "access_token",
+      "value": "paste_student_jwt_here"
+    },
+    {
+      "key": "company_token",
+      "value": "paste_company_jwt_here"
+    }
+  ]
+}
